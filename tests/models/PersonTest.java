@@ -29,6 +29,12 @@ class PersonTest {
     }
 
     @Test
+    void setFirstNameInvalidNumbersEnd() {
+        assertThrows(IllegalArgumentException.class, ()->
+                person.setFirstName("Ja123"));
+    }
+
+    @Test
     void setFirstNameInvalidNumbers() {
         assertThrows(IllegalArgumentException.class, ()->
                 person.setFirstName("54Yeah"));
@@ -80,5 +86,4 @@ class PersonTest {
     void getAge() {
         assertEquals(32, person.getAge());
     }
-
 }
