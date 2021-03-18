@@ -1,5 +1,7 @@
 package models;
 
+import utilities.DBUtility;
+
 import java.time.LocalDate;
 import java.util.TreeMap;
 
@@ -36,6 +38,57 @@ public class Student extends Person{
      */
     public void addGrade(String courseCRN, int grade)
     {
+        if (!DBUtility.validCRN(courseCRN))
+            throw new IllegalArgumentException("course CRN not found in database");
 
+        if (grade>=0 && grade<=100)
+            grades.put(courseCRN, grade);
+        else
+            throw new IllegalArgumentException("grade must be 0-100");
+    }
+
+    /**
+     * This method receives a CRN and returns the corresponding grade earned.
+     * If the crn does not exist for the student, a grade of -1 is returned
+     */
+    public int getGradeForCourse(String crn)
+    {
+        //check if the crn is in the grades treemap
+        if (grades.get(crn) == null)
+            return -1;
+
+        //if yes return it
+        return grades.get(crn);
+    }
+
+    /**
+     * This method will return the number of courses that have a grade at 50 or above
+     */
+    public int getNumOfCoursesPassed()
+    {
+        int numOfPassedCourses = 0;
+
+        //loop over the courses with grades and increase the count by 1 for any course that has
+        //a grade at or above 50%
+        for (Integer grade : grades.values())
+        {
+            if (grade >= 50)
+                numOfPassedCourses++;
+        }
+        return numOfPassedCourses;
+    }
+
+    public double getAvgGrade()
+    {
+        //if no grades are recorded, return -1 to indicate no grades recorded
+        if (grades.size()==0)
+            return -1;
+
+        double sumOfGrades = 0;
+
+        for (Integer grade : grades.values())
+            sumOfGrades += grade;
+
+        return sumOfGrades/grades.size();
     }
 }
