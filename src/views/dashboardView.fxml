@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.ListView?>
@@ -14,7 +15,7 @@
 
 <AnchorPane prefHeight="750.0" prefWidth="800.0" stylesheets="@style.css" xmlns="http://javafx.com/javafx/15.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.DashboardViewController">
    <children>
-      <VBox layoutX="57.0" layoutY="30.0" spacing="10.0">
+      <VBox layoutX="57.0" layoutY="30.0" prefHeight="750.0" prefWidth="800.0" spacing="10.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <children>
             <ImageView fitHeight="150.0" fitWidth="357.0" pickOnBounds="true" preserveRatio="true">
                <image>
@@ -33,28 +34,31 @@
                <children>
                   <VBox spacing="10.0">
                      <children>
-                        <Label text="Students" textAlignment="RIGHT" />
-                        <ListView prefHeight="200.0" prefWidth="200.0" />
+                        <Label fx:id="studentsLabel" text="Students" textAlignment="RIGHT" />
+                        <ListView fx:id="studentListView" prefHeight="200.0" prefWidth="200.0" />
                         <Button mnemonicParsing="false" text="Create New Student" />
                      </children>
                   </VBox>
                   <VBox spacing="10.0" GridPane.rowIndex="1">
                      <children>
-                        <Label text="Professors" />
-                        <ListView prefHeight="200.0" prefWidth="200.0" />
+                        <Label fx:id="professorsLabel" text="Professors" />
+                        <ListView fx:id="professorsListView" prefHeight="200.0" prefWidth="200.0" />
                         <Button mnemonicParsing="false" text="Create New Professor" />
                      </children>
                   </VBox>
                   <VBox spacing="10.0" GridPane.columnIndex="1">
                      <children>
-                        <Label text="Cources" />
-                        <ListView prefHeight="200.0" prefWidth="200.0" />
+                        <Label fx:id="courcesLabel" text="Cources" />
+                        <ListView fx:id="courcesListView" prefHeight="200.0" prefWidth="200.0" />
                         <Button mnemonicParsing="false" text="Create New Course" />
                      </children>
                   </VBox>
                </children>
             </GridPane>
          </children>
+         <padding>
+            <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
+         </padding>
       </VBox>
    </children>
 </AnchorPane>
